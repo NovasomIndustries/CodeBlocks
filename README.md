@@ -3,7 +3,7 @@
 Summary:
 ========
 
-This directory contains the source code for applications and modules-Boot for NOVAsom boards, 
+This directory contains the source code for applications and modules for NOVAsom boards, 
 mainly used in the NOVAsom_SDK 1.0.4 Novasom Industries project
 
 ## Prerequisities
