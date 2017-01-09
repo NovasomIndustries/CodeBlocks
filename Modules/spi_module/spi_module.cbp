@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="spi_module" />
+		<Option makefile_is_custom="1" />
+		<Option pch_mode="2" />
+		<Option compiler="arm-elf-gcc" />
+		<MakeCommands>
+			<Build command="export ARCH=arm; export CROSS_COMPILE=arm-linux-; export PATH=$PATH:/Devel/NOVAsom_SDK/Xcompiler/ArmCompiler/usr/bin;$make -f $makefile $target" />
+			<CompileFile command="export ARCH=arm; export CROSS_COMPILE=arm-linux-; export PATH=$PATH:/Devel/NOVAsom_SDK/Xcompiler/ArmCompiler/usr/bin;$make -f $makefile $file" />
+			<Clean command="$make -f $makefile clean$target" />
+			<DistClean command="$make -f $makefile distclean$target" />
+			<AskRebuildNeeded command="export ARCH=arm; export CROSS_COMPILE=arm-linux-; export PATH=$PATH:/Devel/NOVAsom_SDK/Xcompiler/ArmCompiler/usr/bin;$make -q -f $makefile $target" />
+			<SilentBuild command="export ARCH=arm; export CROSS_COMPILE=arm-linux-; export PATH=$PATH:/Devel/NOVAsom_SDK/Xcompiler/ArmCompiler/usr/bin;$make -f $makefile $target &gt; $(CMD_NULL)" />
+		</MakeCommands>
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/spi_module" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="arm-elf-gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<MakeCommands>
+					<Build command="export ARCH=arm; export CROSS_COMPILE=arm-linux-; export PATH=$PATH:/Devel/NOVAsom_SDK/Xcompiler/ArmCompiler/usr/bin;$make -f $makefile $target" />
+					<CompileFile command="export ARCH=arm; export CROSS_COMPILE=arm-linux-; export PATH=$PATH:/Devel/NOVAsom_SDK/Xcompiler/ArmCompiler/usr/bin;$make -f $makefile $file" />
+					<Clean command="$make -f $makefile clean$target" />
+					<DistClean command="$make -f $makefile distclean$target" />
+					<AskRebuildNeeded command="export ARCH=arm; export CROSS_COMPILE=arm-linux-; export PATH=$PATH:/Devel/NOVAsom_SDK/Xcompiler/ArmCompiler/usr/bin;$make -q -f $makefile $target" />
+					<SilentBuild command="export ARCH=arm; export CROSS_COMPILE=arm-linux-; export PATH=$PATH:/Devel/NOVAsom_SDK/Xcompiler/ArmCompiler/usr/bin;$make -f $makefile $target &gt; $(CMD_NULL)" />
+				</MakeCommands>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/spi_module" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="arm-elf-gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+				<MakeCommands>
+					<Build command="export ARCH=arm; export CROSS_COMPILE=arm-linux-; export PATH=$PATH:/Devel/NOVAsom_SDK/Xcompiler/ArmCompiler/usr/bin;$make -f $makefile $target" />
+					<CompileFile command="export ARCH=arm; export CROSS_COMPILE=arm-linux-; export PATH=$PATH:/Devel/NOVAsom_SDK/Xcompiler/ArmCompiler/usr/bin;$make -f $makefile $file" />
+					<Clean command="$make -f $makefile clean$target" />
+					<DistClean command="$make -f $makefile distclean$target" />
+					<AskRebuildNeeded command="export ARCH=arm; export CROSS_COMPILE=arm-linux-; export PATH=$PATH:/Devel/NOVAsom_SDK/Xcompiler/ArmCompiler/usr/bin;$make -q -f $makefile $target" />
+					<SilentBuild command="export ARCH=arm; export CROSS_COMPILE=arm-linux-; export PATH=$PATH:/Devel/NOVAsom_SDK/Xcompiler/ArmCompiler/usr/bin;$make -f $makefile $target &gt; $(CMD_NULL)" />
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="Makefile" />
+		<Unit filename="spi_module.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="spi_module.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
