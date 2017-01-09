@@ -4,7 +4,7 @@ Summary:
 ========
 
 This directory contains the source code for applications and modules for NOVAsom boards, 
-mainly used in the NOVAsom_SDK 1.0.4 Novasom Industries project
+mainly used in the NOVAsom_SDK 1.0.4 Novasom Industries project.  
 Can be downloaded at at [NOVAsomIndustries on github](https://novasomindustries.github.io/CodeBlocks/)
 
 ## Prerequisities
