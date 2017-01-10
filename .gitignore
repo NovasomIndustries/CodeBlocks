@@ -1,4 +1,12 @@
 Apps/*/bin/
+Apps/*/obj/
 Apps/*/*.layout
+Modules/*/*.layout
+Modules/*/.*cmd
+Modules/*/.tmp_versions/
+Modules/*/modules.order
+Modules/*/*.ko
+Modules/spi_module/*.mod.c
+Modules/spi_module/*.o
 
 
