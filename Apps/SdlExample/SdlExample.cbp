@@ -30,7 +30,13 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+                        <Add directory="/Devel/NOVAsom_SDK/FileSystem/SDLBase/output/staging/usr/include/SDL2" />
 		</Compiler>
+                <Linker>
+                        <Add option="-lSDL2 -lSDL2_ttf -lSDL2_gfx -ldirect -lz -lts -lfreetype -lpng16 -ldirectfb -lfusion" />
+                        <Add directory="/Devel/NOVAsom_SDK/FileSystem/SDLBase/output/staging/usr/lib" />
+                </Linker>
+
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
