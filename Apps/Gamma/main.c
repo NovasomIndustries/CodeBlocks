@@ -88,10 +88,7 @@ float center, width, start, height, t, scurve[17], gammacurve[17];
 	for(k=0;k<16;k++) {
 		constk[k] /= 2;
 		constk[k] &= 0x1ff;
-
 	}
-
-
 }
 
 int gammaFunc(int fd_fb,float gammainput)

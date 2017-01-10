@@ -47,7 +47,7 @@ int file_matrix[5][3];
 void fb_set_std_table(int fd_fb,int index)
 {
 struct mxcfb_csc_matrix csc_matrix;
-int i,j;
+int i,j,ret;
 
 	memset(&csc_matrix,0,sizeof(csc_matrix));
 	switch ( index )
@@ -72,7 +72,8 @@ int i,j;
                 break;
 	    default : memcpy(csc_matrix.param,neutral_coeff_csc,sizeof(neutral_coeff_csc)); break;
 	}
-	ioctl(fd_fb, MXCFB_CSC_UPDATE, &csc_matrix);
+	ret = ioctl(fd_fb, MXCFB_CSC_UPDATE, &csc_matrix);
+	printf("ret = %d\n",ret);
 }
 
 
