@@ -12,62 +12,30 @@
 
 int main(int argc, char *argv[])
 {
-FILE *wfd;
-int fd,ret;
-unsigned int    reason,counter;
+int             fd;
+unsigned int    boot_reason;
+int timeout = 10;
 
 	if((fd = open("/dev/watchdog", O_RDWR, 0)) < 0)
 	{
-		printf("Can not open /dev/watchdog\n");
+		printf("Can't open /dev/watchdog\n");
 		return -1;
 	}
-    ret = ioctl(fd, WDIOC_GETBOOTSTATUS, &reason);
-    printf("WDIOC_GETBOOTSTATUS reason = 0x%08x , ret = %d\n",reason,ret);
+	if ( argc == 2 )
+        timeout = atoi(argv[1]);
+    ioctl(fd, WDIOC_SETTIMEOUT, &timeout);
+    printf("The timeout is set to %d seconds\n", timeout);
 
-    if ( reason != 0 )
-    {
-        wfd=fopen("/tmp/wdog_counter","r");
-        if ( wfd !=NULL)
-        {
-            fscanf(wfd,"%d",&counter);
-            printf("read : counter = %d\n",counter);
-            fclose(wfd);
-            counter++;
-            wfd=fopen("/tmp/wdog_counter","w");
-            if ( wfd !=NULL)
-            {
-                fprintf(wfd,"%d",counter);
-                printf("write : counter = %d\n",counter);
-                fclose(wfd);
-                system("/tmp/www/store_wdog_counter");
-            }
-        }
-        system("echo 1 > /tmp/boot_reason");
-    }
-    else
-    {
-        wfd=fopen("/tmp/reboot_counter","r");
-        if ( wfd !=NULL)
-        {
-            fscanf(wfd,"REBOOT_COUNTER=%d",&counter);
-            printf("read : counter = %d\n",counter);
-            fclose(wfd);
-            counter++;
-            wfd=fopen("/tmp/reboot_counter","w");
-            if ( wfd !=NULL)
-            {
-                fprintf(wfd,"REBOOT_COUNTER=%d",counter);
-                printf("write : counter = %d\n",counter);
-                fclose(wfd);
-                system("/tmp/www/store_reboot_counter");
-            }
-        }
-    }
+    ioctl(fd, WDIOC_GETBOOTSTATUS, &boot_reason);
+    if ( boot_reason == 0 )
+        printf("Regular boot\n");
+    if ( boot_reason == 0x00000020 )
+        printf("WD reboot\n");
 
     while(1)
     {
-        ret = ioctl(fd, WDIOC_KEEPALIVE, NULL);
-        sleep(1);
+        ioctl(fd, WDIOC_KEEPALIVE, NULL);
+        sleep(5);
     }
     return 0;
 }
