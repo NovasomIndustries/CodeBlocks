@@ -1,7 +1,10 @@
 #include <SDL.h>
 #include <stdio.h>
 /*
-Start app with --dfb:system=FBDev options */
+Start app with --dfb:system=FBDev options
+This example assumes the reference file system is in SdlBase.
+Change it accordingly to your setup
+*/
 
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 480;
