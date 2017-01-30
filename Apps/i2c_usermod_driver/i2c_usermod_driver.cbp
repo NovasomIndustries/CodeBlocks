@@ -2,12 +2,12 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="SdlExample" />
+		<Option title="i2c_usermod_driver" />
 		<Option pch_mode="2" />
 		<Option compiler="arm-elf-gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/SdlExample" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/i2c_usermod_driver" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="arm-elf-gcc" />
@@ -16,7 +16,7 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/SdlExample" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/i2c_usermod_driver" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="arm-elf-gcc" />
@@ -30,12 +30,7 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
-			<Add directory="/Devel/NOVAsom_SDK/FileSystem/SDLBase/output/staging/usr/include/SDL2" />
 		</Compiler>
-		<Linker>
-			<Add option="-lSDL2 -lSDL2_ttf -lSDL2_gfx -lSDL2_image  -ldirect -lz -lts -lfreetype -lpng16 -ldirectfb -lfusion" />
-			<Add directory="/Devel/NOVAsom_SDK/FileSystem/SDLBase/output/staging/usr/lib" />
-		</Linker>
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
