@@ -2,12 +2,12 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="i2c_usermod_driver" />
+		<Option title="e2info" />
 		<Option pch_mode="2" />
 		<Option compiler="arm-elf-gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/i2c_usermod_driver" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/e2info" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="arm-elf-gcc" />
@@ -16,7 +16,7 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/i2c_usermod_driver" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/e2info" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="arm-elf-gcc" />
