@@ -2,17 +2,21 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
-#define WIDTH 800
-#define HEIGHT 480
+#define WIDTH 1280
+#define HEIGHT 800
 #define IMG_PATH1 "exit1.png"
 #define IMG_PATH2 "exit2.png"
 #define IMG_PATH3 "exit3.png"
 #define IMG_PATH4 "exit4.png"
+#define IMG_PATH5 "exit5.png"
+#define IMG_PATH6 "exit6.png"
 
 SDL_Texture *img1 = NULL;
 SDL_Texture *img2 = NULL;
 SDL_Texture *img3 = NULL;
 SDL_Texture *img4 = NULL;
+SDL_Texture *img5 = NULL;
+SDL_Texture *img6 = NULL;
 
 int main (int argc, char *argv[])
 {
@@ -30,12 +34,15 @@ int img_ptr = 0 , events = 0;
 	img2 = IMG_LoadTexture(renderer, IMG_PATH2);
 	img3 = IMG_LoadTexture(renderer, IMG_PATH3);
 	img4 = IMG_LoadTexture(renderer, IMG_PATH4);
+	img5 = IMG_LoadTexture(renderer, IMG_PATH5);
+	img6 = IMG_LoadTexture(renderer, IMG_PATH6);
 
     SDL_RenderClear(renderer);
-	SDL_RenderCopy(renderer, img4, NULL, NULL);
+	SDL_RenderCopy(renderer, img5, NULL, NULL);
     SDL_RenderPresent(renderer);
 	while (1)
 	{
+	/*
 		SDL_Event e;
         events = 0;
 		if ( SDL_PollEvent(&e) )
@@ -50,15 +57,19 @@ int img_ptr = 0 , events = 0;
                 printf("Event %d\n",e.type);
             }
 		}
+        SDL_Delay( 1000 );
+        events++;
+        SDL_RenderCopy(renderer, img6, NULL, NULL);
+
         if ( events != 0 )
         {
             SDL_RenderClear(renderer);
             switch ( img_ptr )
             {
-                case 0 : SDL_RenderCopy(renderer, img1, NULL, NULL); break;
-                case 1 : SDL_RenderCopy(renderer, img2, NULL, NULL); break;
-                case 2 : SDL_RenderCopy(renderer, img3, NULL, NULL); break;
-                case 3 : SDL_RenderCopy(renderer, img4, NULL, NULL); break;
+                case 0 : SDL_RenderCopy(renderer, img5, NULL, NULL); break;
+                case 1 : SDL_RenderCopy(renderer, img5, NULL, NULL); break;
+                case 2 : SDL_RenderCopy(renderer, img5, NULL, NULL); break;
+                case 3 : SDL_RenderCopy(renderer, img5, NULL, NULL); break;
             }
             SDL_RenderPresent(renderer);
             img_ptr++;
@@ -66,6 +77,7 @@ int img_ptr = 0 , events = 0;
             SDL_Delay( 10 );
             events = 0;
         }
+        */
 	}
 	SDL_DestroyTexture(img1);
 	SDL_DestroyTexture(img2);
