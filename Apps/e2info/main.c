@@ -120,6 +120,10 @@ int i,k;
             return 0;
     }
     i=0 , k=0;
+    macbuf[i++] = 'M';
+    macbuf[i++] = 'a';
+    macbuf[i++] = 'c';
+    macbuf[i++] = '=';
     macbuf[i++] = s[k++];
     macbuf[i++] = s[k++];
     k++;
@@ -142,20 +146,37 @@ int i,k;
 
 void dump_e2prom(int file, int address)
 {
+unsigned char    *stra;
+
     read_at24c16(file,address,buf,AT24C16_PAGESIZE);
+    stra = &buf[4];
     switch(address)
     {
         case MAC_PAGE:
-                printf("MAC : %c%c:%c%c:%c%c:%c%c:%c%c:%c%c\n",buf[0],buf[1],buf[2],buf[3],buf[4],buf[5],buf[6],buf[7],buf[8],buf[9],buf[10],buf[11]);
+                if ( ( buf[0] == 'M')  && ( buf[1] == 'a' ) && ( buf[2] == 'c' )&& ( buf[3] == '=' ))
+                {
+                    printf("MAC : %s\n",stra);
+                }
+                else
+                    printf("Invalid MAC address, maybe the e2prom is blank\n");
                 break;
         case PN_PAGE:
-                printf("P/N : %s\n",buf);
+                if ( ( buf[0] == 'P')  && ( buf[1] == '/' ) && ( buf[2] == 'N' )&& ( buf[3] == '=' ))
+                    printf("P/N : %s\n",stra);
+                else
+                    printf("Invalid P/N, maybe the e2prom is blank\n");
                 break;
         case SERIAL_PAGE:
-                printf("S/N : %s\n",buf);
+                if ( ( buf[0] == 'S')  && ( buf[1] == '/' ) && ( buf[2] == 'N' )&& ( buf[3] == '=' ))
+                    printf("S/N : %s\n",stra);
+                else
+                    printf("Invalid S/N, maybe the e2prom is blank\n");
                 break;
         case LOT_PAGE:
-                printf("LOT : %s\n",buf);
+                if ( ( buf[0] == 'L')  && ( buf[1] == 'O' ) && ( buf[2] == 'T' )&& ( buf[3] == '=' ))
+                    printf("LOT : %s\n",stra);
+                else
+                    printf("Invalid LOT, maybe the e2prom is blank\n");
                 break;
     }
 }
@@ -183,18 +204,38 @@ int op_macr=0, op_serialr=0, op_pnr=0, op_lotr=0;
                     }
                     if ( isMAC(optarg))
                         op_macw = 1;
+                    else
+                    {
+                        printf("Malformed MAC\n");
+                        usage();
+                    }
                     break;
                 case 'P':
-                    sprintf(pnbuf,"%s",optarg);
-                    op_pnw = 1;
+                    if ( strlen(optarg) <=12 )
+                    {
+                        sprintf(( char *)pnbuf,"P/N=%s",optarg);
+                        op_pnw = 1;
+                    }
+                    else
+                        usage();
                     break;
                 case 'S':
-                    sprintf(serialbuf,"%s",optarg);
-                    op_serialw = 1;
+                    if ( strlen(optarg) <=12 )
+                    {
+                        sprintf(( char *)serialbuf,"S/N=%s",optarg);
+                        op_serialw = 1;
+                    }
+                    else
+                        usage();
                     break;
                 case 'L':
-                    sprintf(lotbuf,"%s",optarg);
-                    op_lotw = 1;
+                    if ( strlen(optarg) <=12 )
+                    {
+                        sprintf(( char *)lotbuf,"LOT=%s",optarg);
+                        op_lotw = 1;
+                    }
+                    else
+                        usage();
                     break;
                 case 'm':
                     op_macr = 1;

@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1487254454 source:/Devel/NOVAsom_SDK/CodeBlocks/Apps/e2info/main.c
+	<errno.h>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+	<linux/i2c.h>
+	<linux/i2c-dev.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<math.h>
+	<ctype.h>
+
