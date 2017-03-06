@@ -161,10 +161,8 @@ unsigned char    *stra;
                     printf("Invalid MAC address, maybe the e2prom is blank\n");
                 break;
         case PN_PAGE:
-                if ( ( buf[0] == 'P')  && ( buf[1] == '/' ) && ( buf[2] == 'N' )&& ( buf[3] == '=' ))
-                    printf("P/N : %s\n",stra);
-                else
-                    printf("Invalid P/N, maybe the e2prom is blank\n");
+                /* Note : the P/N is saved with no headers, to use the full 16 bytes size */
+                printf("P/N : %s\n",buf);
                 break;
         case SERIAL_PAGE:
                 if ( ( buf[0] == 'S')  && ( buf[1] == '/' ) && ( buf[2] == 'N' )&& ( buf[3] == '=' ))
@@ -211,9 +209,9 @@ int op_macr=0, op_serialr=0, op_pnr=0, op_lotr=0;
                     }
                     break;
                 case 'P':
-                    if ( strlen(optarg) <=12 )
+                    if ( strlen(optarg) <=16 )
                     {
-                        sprintf(( char *)pnbuf,"P/N=%s",optarg);
+                        sprintf(( char *)pnbuf,"%s",optarg);
                         op_pnw = 1;
                     }
                     else

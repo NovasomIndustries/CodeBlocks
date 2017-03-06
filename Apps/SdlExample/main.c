@@ -20,7 +20,7 @@ SDL_Texture *img4 = NULL;
 SDL_Texture *img5 = NULL;
 SDL_Texture *img6 = NULL;
 
-//#define SINGLE_IMAGE
+//#define AUTO_LOOP
 
 int main (int argc, char *argv[])
 {
@@ -30,7 +30,19 @@ int img_ptr = 0 , events = 0;
 FILE *fp;
 char    video_string[32];
 int  width,height;
+int auto_loop = 0, loop_delay=1;
+SDL_Event e;
 
+    if (argc >= 3)
+    {
+        printf("%s\n",argv[1]);
+        if ( strcmp("loop",argv[1]) == 0 )
+        {
+            auto_loop = 1;
+            loop_delay = atoi(argv[2]);
+            printf("Loop mode\n");
+        }
+    }
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
         return 1;
     fp = fopen("/sys/class/graphics/fb0/mode","r");
@@ -53,7 +65,6 @@ int  width,height;
         width = 1280;
         height = 800;
     }
-
 	win = SDL_CreateWindow("Image Loading", 0, 0, width, height, 0);
 	renderer = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
 
@@ -66,35 +77,14 @@ int  width,height;
 	img6 = IMG_LoadTexture(renderer, IMG_PATH6);
 
     SDL_RenderClear(renderer);
-    #ifdef  SINGLE_IMAGE
-	SDL_RenderCopy(renderer, img1, NULL, NULL);
-    #else
-	SDL_RenderCopy(renderer, img1, NULL, NULL);
-    #endif // SINGLE_IMAGE
+	SDL_RenderCopy(renderer, img6, NULL, NULL);
     SDL_RenderPresent(renderer);
 
 	while (1)
 	{
-        #ifdef  SINGLE_IMAGE
-            sleep(1);
-        #else
-		SDL_Event e;
-        events = 0;
-		if ( SDL_PollEvent(&e) )
-		{
-			if (e.type == SDL_QUIT)
-				break;
-			else if (e.type == SDL_KEYUP && e.key.keysym.sym == SDLK_ESCAPE)
-				break;
-            else if (e.type == SDL_MOUSEBUTTONDOWN )
-            {
-                events++;
-                printf("Event %d\n",e.type);
-            }
-		}
-
-        if ( events != 0 )
+        if ( auto_loop == 1)
         {
+            SDL_Delay( loop_delay * 1000 );
             SDL_RenderClear(renderer);
             switch ( img_ptr )
             {
@@ -109,12 +99,43 @@ int  width,height;
             img_ptr++;
             if ( img_ptr > 5 )
                 img_ptr = 0;
-            SDL_Delay( 10 );
-            events = 0;
         }
-        #endif
-	/*
-        */
+        else
+        {
+            events = 0;
+            if ( SDL_PollEvent(&e) )
+            {
+                if (e.type == SDL_QUIT)
+                    break;
+                else if (e.type == SDL_KEYUP && e.key.keysym.sym == SDLK_ESCAPE)
+                    break;
+                else if (e.type == SDL_MOUSEBUTTONDOWN )
+                {
+                    events++;
+                    printf("Event %d\n",e.type);
+                }
+            }
+
+            if ( events != 0 )
+            {
+                SDL_RenderClear(renderer);
+                switch ( img_ptr )
+                {
+                    case 0 : SDL_RenderCopy(renderer, img1, NULL, NULL); break;
+                    case 1 : SDL_RenderCopy(renderer, img2, NULL, NULL); break;
+                    case 2 : SDL_RenderCopy(renderer, img3, NULL, NULL); break;
+                    case 3 : SDL_RenderCopy(renderer, img4, NULL, NULL); break;
+                    case 4 : SDL_RenderCopy(renderer, img5, NULL, NULL); break;
+                    case 5 : SDL_RenderCopy(renderer, img6, NULL, NULL); break;
+                }
+                SDL_RenderPresent(renderer);
+                img_ptr++;
+                if ( img_ptr > 5 )
+                    img_ptr = 0;
+                SDL_Delay( 10 );
+                events = 0;
+            }
+        }
 	}
 	SDL_DestroyTexture(img1);
 	SDL_DestroyTexture(img2);
