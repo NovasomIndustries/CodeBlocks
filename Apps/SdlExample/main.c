@@ -2,15 +2,23 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
+
+/*
+Launch with :
+    ./SdlExample loop 1 --dfb:system=FBDev
+    or
+    ./SdlExample --dfb:system=FBDev
+*/
+
 #define WIDTH 800
 #define HEIGHT 480
-#define IMG_PATH0 "ks00.png"
-#define IMG_PATH1 "ks01.png"
-#define IMG_PATH2 "ks02.png"
-#define IMG_PATH3 "ks03.png"
-#define IMG_PATH4 "ks04.png"
-#define IMG_PATH5 "ks05.png"
-#define IMG_PATH6 "ks06.png"
+#define IMG_PATH0 "/tmp/ks00.png"
+#define IMG_PATH1 "/tmp/ks01.png"
+#define IMG_PATH2 "/tmp/ks02.png"
+#define IMG_PATH3 "/tmp/ks03.png"
+#define IMG_PATH4 "/tmp/ks04.png"
+#define IMG_PATH5 "/tmp/ks05.png"
+#define IMG_PATH6 "/tmp/ks06.png"
 
 SDL_Texture *img0 = NULL;
 SDL_Texture *img1 = NULL;
@@ -35,7 +43,7 @@ SDL_Event e;
 
     if (argc >= 3)
     {
-        printf("%s\n",argv[1]);
+
         if ( strcmp("loop",argv[1]) == 0 )
         {
             auto_loop = 1;
